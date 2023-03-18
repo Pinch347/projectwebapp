@@ -4,24 +4,23 @@ import React, { useState } from 'react';
 // Define the TodoList functional component with state
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
 
   // Add a new todo item
   const addTodo = (event) => {
     event.preventDefault();
-    if (!newTodo) return;
+    const newTodo = event.target.elements.todoInput.value;
     setTodos([...todos, { title: newTodo, completed: false }]);
-    setNewTodo('');
+    event.target.elements.todoInput.value = '';
   };
 
   // Remove a todo item
-  const removeTodo = (index) => {
-    const newTodos = todos.filter((_, i) => i !== index);
-    setTodos(newTodos);
+  const handleDelete = (index) => {
+    const filteredTodos = todos.filter((_, i) => i !== index);
+    setTodos(filteredTodos);
   };
 
   // Update the completion status of a todo item
-  const toggleComplete = (index) => {
+  const handleToggle = (index) => {
     const updatedTodos = todos.map((todo, i) => {
       if (i === index) {
         return { ...todo, completed: !todo.completed };
@@ -36,15 +35,15 @@ const TodoList = () => {
     <div>
       <h2>Todo List</h2>
       <form onSubmit={addTodo}>
-        <input type="text" name="todoInput" placeholder="Add new todo" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} />
+        <input type="text" name="todoInput" placeholder="Add new todo" />
         <button type="submit">Add</button>
       </form>
       <ul>
         {todos.map((todo, index) => (
           <li key={index}>
-            <input type="checkbox" checked={todo.completed} onChange={() => toggleComplete(index)} />
+            <input type="checkbox" checked={todo.completed} onChange={() => handleToggle(index)} />
             {todo.title}
-            <button onClick={() => removeTodo(index)}>Remove</button>
+            <button onClick={() => handleDelete(index)}>Remove</button>
           </li>
         ))}
       </ul>
