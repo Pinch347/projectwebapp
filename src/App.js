@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import TodoList from './components/TodoList';
-import Contact from './components/Contact';
+import ContactForm from './components/ContactForm';
 import './App.css';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
               <TodoList />
             </Route>
             <Route exact path="/contact">
-              <Contact />
+              <ContactForm />
             </Route>
           </Switch>
         </div>
