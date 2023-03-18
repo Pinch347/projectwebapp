@@ -13,13 +13,15 @@ const ContactForm = () => {
     event.preventDefault();
     console.log('Form submitted!');
     // Add code here to send form data to server or do something else with it
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setComments('');
   };
 
   // Define function to handle input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    // Update corresponding state variable based on input name
     switch (name) {
       case 'firstName':
         setFirstName(value);
