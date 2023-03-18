@@ -1,9 +1,7 @@
-// Import React and required dependencies
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-// Define the Navbar functional component
 const Navbar = () => {
   return (
     <nav className="navbar">
@@ -23,5 +21,4 @@ const Navbar = () => {
   );
 };
 
-// Export the Navbar component
 export default Navbar;
