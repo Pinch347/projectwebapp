@@ -5,20 +5,13 @@ import React, { useState } from 'react';
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
-  const [filter, setFilter] = useState('all');
 
   // Add a new todo item
   const addTodo = (event) => {
     event.preventDefault();
+    if (!newTodo) return;
     setTodos([...todos, { title: newTodo, completed: false }]);
     setNewTodo('');
-  };
-
-  // Update a todo item's completion status
-  const toggleCompleted = (index) => {
-    const newTodos = [...todos];
-    newTodos[index].completed = !newTodos[index].completed;
-    setTodos(newTodos);
   };
 
   // Remove a todo item
@@ -27,36 +20,31 @@ const TodoList = () => {
     setTodos(newTodos);
   };
 
-  // Filter the todo items based on completion status
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === 'all') {
-      return true;
-    } else if (filter === 'completed') {
-      return todo.completed;
-    } else {
-      return !todo.completed;
-    }
-  });
+  // Update the completion status of a todo item
+  const toggleComplete = (index) => {
+    const updatedTodos = todos.map((todo, i) => {
+      if (i === index) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
 
   // Add JSX for the todo list, input form, and filter buttons
   return (
     <div>
       <h2>Todo List</h2>
       <form onSubmit={addTodo}>
-        <input type="text" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} placeholder="Add new todo" />
+        <input type="text" name="todoInput" placeholder="Add new todo" value={newTodo} onChange={(event) => setNewTodo(event.target.value)} />
         <button type="submit">Add</button>
       </form>
-      <div>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('active')}>Active</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
-      </div>
       <ul>
-        {filteredTodos.map((todo, index) => (
+        {todos.map((todo, index) => (
           <li key={index}>
-            <input type="checkbox" checked={todo.completed} onChange={() => toggleCompleted(index)} />
+            <input type="checkbox" checked={todo.completed} onChange={() => toggleComplete(index)} />
             {todo.title}
-            <button onClick={() => removeTodo(index)}>Delete</button>
+            <button onClick={() => removeTodo(index)}>Remove</button>
           </li>
         ))}
       </ul>
