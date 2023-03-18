@@ -1,49 +1,65 @@
-// Import React and required dependencies
 import React, { useState } from 'react';
+import './TodoList.css';
 
-// Define the TodoList functional component with state
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState('');
+  const [filter, setFilter] = useState('all');
 
-  // Add a new todo item
   const addTodo = (event) => {
     event.preventDefault();
-    const newTodo = event.target.elements.todoInput.value;
+    if (!newTodo) return;
     setTodos([...todos, { title: newTodo, completed: false }]);
-    event.target.elements.todoInput.value = '';
+    setNewTodo('');
   };
 
-  // Remove a todo item
-  const handleDelete = (index) => {
-    const filteredTodos = todos.filter((_, i) => i !== index);
-    setTodos(filteredTodos);
+  const removeTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   };
 
-  // Update the completion status of a todo item
-  const handleToggle = (index) => {
-    const updatedTodos = todos.map((todo, i) => {
-      if (i === index) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
+  const handleToggle = (todo) => {
+    const updatedTodo = { ...todo, completed: !todo.completed };
+    const newTodos = todos.map((t) => (t === todo ? updatedTodo : t));
+    setTodos(newTodos);
   };
 
-  // Add JSX for the todo list, input form, and filter buttons
+  const handleFilter = (filterString) => {
+    setFilter(filterString);
+  };
+
+  const filteredTodos = filter === 'all' ? todos :
+    filter === 'completed' ? todos.filter(todo => todo.completed) :
+    todos.filter(todo => !todo.completed);
+
   return (
     <div>
       <h2>Todo List</h2>
       <form onSubmit={addTodo}>
-        <input type="text" name="todoInput" placeholder="Add new todo" />
+        <input
+          type="text"
+          name="todoInput"
+          placeholder="Add new todo"
+          value={newTodo}
+          onChange={(event) => setNewTodo(event.target.value)}
+        />
         <button type="submit">Add</button>
       </form>
+      <div className="filters">
+        <button onClick={() => handleFilter('all')}>All</button>
+        <button onClick={() => handleFilter('completed')}>Completed</button>
+        <button onClick={() => handleFilter('incomplete')}>Incomplete</button>
+      </div>
       <ul>
-        {todos.map((todo, index) => (
+        {filteredTodos.map((todo, index) => (
           <li key={index}>
-            <input type="checkbox" checked={todo.completed} onChange={() => handleToggle(index)} />
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => handleToggle(todo)}
+            />
             {todo.title}
-            <button onClick={() => handleDelete(index)}>Remove</button>
+            <button onClick={() => removeTodo(index)}>Remove</button>
           </li>
         ))}
       </ul>
@@ -51,5 +67,4 @@ const TodoList = () => {
   );
 };
 
-// Export the TodoList component
 export default TodoList;
