@@ -15,6 +15,29 @@ const ContactForm = () => {
     // Add code here to send form data to server or do something else with it
   };
 
+  // Define function to handle input changes
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    // Update corresponding state variable based on input name
+    switch (name) {
+      case 'firstName':
+        setFirstName(value);
+        break;
+      case 'lastName':
+        setLastName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'comments':
+        setComments(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -23,7 +46,7 @@ const ContactForm = () => {
           type="text"
           name="firstName"
           value={firstName}
-          onChange={(event) => setFirstName(event.target.value)}
+          onChange={handleInputChange}
         />
       </label>
       <br />
@@ -33,7 +56,7 @@ const ContactForm = () => {
           type="text"
           name="lastName"
           value={lastName}
-          onChange={(event) => setLastName(event.target.value)}
+          onChange={handleInputChange}
         />
       </label>
       <br />
@@ -43,7 +66,7 @@ const ContactForm = () => {
           type="email"
           name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={handleInputChange}
         />
       </label>
       <br />
@@ -52,7 +75,7 @@ const ContactForm = () => {
         <textarea
           name="comments"
           value={comments}
-          onChange={(event) => setComments(event.target.value)}
+          onChange={handleInputChange}
         />
       </label>
       <br />
