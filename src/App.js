@@ -1,27 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import TodoList from './components/TodoList';
-import ContactForm from './components/ContactForm';
+import logo from './logo.svg';
 import './App.css';
+import ContactForm from './components/ContactForm'; // import ContactForm component
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="content">
-          <Switch>
-            <Route exact path="/todos">
-              <TodoList />
-            </Route>
-            <Route exact path="/contact">
-              <ContactForm />
-            </Route>
-          </Switch>
-        </div>
-      </div>
-    </Router>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+      <ContactForm /> {/* Render ContactForm component */}
+    </div>
   );
 }
 
