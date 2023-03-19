@@ -2,6 +2,16 @@
 
 .todo-list {
   margin: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.todo-list-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0 auto;
 }
 
 /* TodoItem.css */
@@ -11,6 +21,7 @@
   align-items: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .todo-item input[type="checkbox"] {
@@ -35,13 +46,49 @@
 
 .todo-form input[type="text"] {
   flex-grow: 1;
-  margin-right: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
 
 .todo-form button {
-  background-color: #28a745;
+  background-color: #6a89cc;
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
+  border-radius: 4px;
   cursor: pointer;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.todo-form button:hover {
+  background-color: #4a69bd;
+}
+
+/* FilterButtons.css */
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  background-color: #6a89cc;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-button:hover {
+  background-color: #4a69bd;
+}
+
+.filter-button-active {
+  background-color: #3c6382;
 }
