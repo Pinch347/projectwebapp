@@ -1,48 +1,22 @@
 /* TodoList.css */
 
 .todo-list {
-    margin: 2rem;
-  }
-  
-  /* TodoItem.css */
-  
-  .todo-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  .todo-item input[type="checkbox"] {
-    margin-right: 1rem;
-  }
-  
-  .todo-item button {
-    margin-left: auto;
-    background-color: transparent;
-    border: none;
-    font-size: 1.2rem;
-    color: red;
-    cursor: pointer;
-  }
-  
-  /* TodoForm.css */
-  
-  .todo-form {
-    display: flex;
-    margin-bottom: 1rem;
-  }
-  
-  .todo-form input[type="text"] {
-    flex-grow: 1;
-    margin-right: 1rem;
-  }
-  
-  .todo-form button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-  
+  margin: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+/* TodoItem.css */
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 1rem
